@@ -37,21 +37,38 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [printStatus, setPrintStatus] = useState("");
   const [accessToken, setAccessToken] = useState("");
+  const [authUser, setAuthUser] = useState("admin");
+  const [authPassword, setAuthPassword] = useState("admin123");
+  const [authLoading, setAuthLoading] = useState(false);
+  const [authMessage, setAuthMessage] = useState("Authenticating with default credentials...");
 
   useEffect(() => {
-    loginLocal();
+    loginLocal("admin", "admin123", true);
     loadTodayRate();
   }, []);
 
-  async function loginLocal() {
+  async function loginLocal(username = authUser, password = authPassword, silent = false) {
     try {
+      setAuthLoading(true);
+      if (!silent) {
+        setError("");
+      }
       const { data } = await axios.post(`${API_BASE}/api/auth/login`, {
-        username: "admin",
-        password: "admin123"
+        username,
+        password
       });
-      setAccessToken(data?.data?.access_token || "");
-    } catch {
-      setError("Login failed for local API.");
+      const token = data?.data?.access_token || "";
+      setAccessToken(token);
+      setAuthMessage(token ? `Authenticated as ${username}` : "Login succeeded but no token returned.");
+      if (!token) {
+        setError("Login succeeded, but access token is missing in response.");
+      }
+    } catch (e) {
+      setAccessToken("");
+      setAuthMessage("Authentication failed.");
+      setError(e?.response?.data?.message || "Login failed for local API. Please login from the top bar.");
+    } finally {
+      setAuthLoading(false);
     }
   }
 
@@ -94,7 +111,7 @@ export default function App() {
   async function finalizeInvoice() {
     try {
       if (!cart.length) return;
-      if (!accessToken) throw new Error("POS not authenticated yet.");
+      if (!accessToken) throw new Error("Not authenticated. Please login from the top bar before finalizing invoice.");
       setIsSubmitting(true);
       setError("");
       const payload = {
@@ -114,7 +131,7 @@ export default function App() {
       setResults([]);
       setQ("");
     } catch (e) {
-      setError(e?.response?.data?.message || "Invoice finalization failed.");
+      setError(e?.response?.data?.message || e?.message || "Invoice finalization failed.");
     } finally {
       setIsSubmitting(false);
     }
@@ -122,14 +139,14 @@ export default function App() {
 
   async function printInvoice(invoiceId) {
     try {
-      if (!accessToken) throw new Error("POS not authenticated yet.");
+      if (!accessToken) throw new Error("Not authenticated. Please login from the top bar before printing.");
       setPrintStatus("");
       await axios.post(`${API_BASE}/api/print/invoice/${invoiceId}`, {}, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       setPrintStatus("Invoice printed successfully.");
     } catch (e) {
-      setPrintStatus(e?.response?.data?.message || "Printer unavailable. Please check thermal printer.");
+      setPrintStatus(e?.response?.data?.message || e?.message || "Printer unavailable. Please check thermal printer.");
     }
   }
 
