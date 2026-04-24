@@ -1,59 +1,231 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
+  font-family: Inter, "Segoe UI", sans-serif;
+  background: #eef1f7;
+  color: #13213c;
 }
-.layout {
-  padding: 16px;
+
+button,
+input,
+select {
+  font: inherit;
 }
-.header {
+
+.appShell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+}
+
+.sideNav {
+  background: linear-gradient(180deg, #051733 0%, #0e2345 100%);
+  color: #fff;
+  padding: 24px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 34px;
+  color: #ffc247;
+  letter-spacing: 1px;
+}
+
+.brand p {
+  margin: 4px 0 24px;
+  font-size: 12px;
+  color: #d0d8e8;
+}
+
+.menuHead {
+  font-size: 12px;
+  color: #93a1bb;
+  margin-bottom: 10px;
+}
+
+.navItem {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #f4f8ff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.navItem.active,
+.navItem:hover {
+  background: rgba(255, 194, 71, 0.14);
+  border-color: rgba(255, 194, 71, 0.25);
+}
+
+.workspace {
+  padding: 20px;
+}
+
+.topbar {
+  background: #fff;
+  border: 1px solid #dbe2ee;
+  border-radius: 14px;
+  padding: 18px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  gap: 14px;
 }
-.rateBox {
+
+.topbar h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.topbar p {
+  margin: 6px 0 0;
+  color: #53607a;
+}
+
+
+.topbarActions {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 10px;
 }
-.rateBox input,
-.row input,
-select {
-  padding: 8px;
-  border: 1px solid #c4cede;
-  border-radius: 6px;
+
+.authCard {
+  min-width: 320px;
+  background: #f7f9fd;
+  border: 1px solid #d8e1ef;
+  border-radius: 12px;
+  padding: 10px;
 }
-.main {
+
+.authTitle {
+  margin: 0 0 8px;
+  color: #314662;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.authFields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 6px;
 }
+
+.rateControl {
+  min-width: 280px;
+}
+
+.rateControl label {
+  display: block;
+  margin-bottom: 8px;
+  color: #51617f;
+  font-size: 13px;
+}
+
+.rowInline {
+  display: flex;
+  gap: 8px;
+}
+
+input,
+select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #cad4e5;
+  padding: 10px;
+  background: #fff;
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  background: #123064;
+  color: #fff;
+  padding: 10px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+button.danger {
+  background: #b23434;
+}
+
+.statsGrid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.statCard {
+  background: #fff;
+  border: 1px solid #dbe2ee;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.statCard p {
+  margin: 0;
+  color: #4b5b78;
+}
+
+.statCard h3 {
+  margin: 8px 0;
+  font-size: 30px;
+}
+
+.statCard span {
+  color: #237a3e;
+  font-size: 13px;
+}
+
+.contentGrid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1.15fr 1.15fr 0.9fr;
+  gap: 14px;
+  align-items: start;
+}
+
 .panel {
   background: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  border: 1px solid #dce3ef;
+  border: 1px solid #dbe2ee;
+  border-radius: 14px;
+  padding: 14px;
 }
+
+.panelHead {
+  margin-bottom: 10px;
+}
+
+.panelHead h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.panelHead span {
+  color: #5e6d87;
+  font-size: 13px;
+}
+
 .row {
   display: flex;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
-button {
-  border: none;
-  background: #0a66c2;
-  color: #fff;
-  border-radius: 6px;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-.danger {
-  background: #bf3030;
-}
+
 .list {
   list-style: none;
   margin: 0;
@@ -61,33 +233,137 @@ button {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 420px;
+  max-height: 340px;
   overflow: auto;
 }
+
 .list li {
-  border: 1px solid #e1e6ee;
-  border-radius: 8px;
+  border: 1px solid #e1e7f2;
+  border-radius: 10px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
-.list span {
+
+.list li.empty {
+  color: #6c7b95;
+  justify-content: center;
+  min-height: 72px;
+}
+
+.list strong {
   display: block;
+}
+
+.list span {
   font-size: 12px;
-  color: #5b6575;
+  color: #5d6b83;
 }
-.totals p {
-  margin: 6px 0;
+
+.totalsCard {
+  margin-top: 12px;
+  background: #f6f8fc;
+  border: 1px solid #dee6f3;
+  border-radius: 10px;
+  padding: 12px;
 }
-.grand {
-  font-weight: 700;
+
+.totalsCard p {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.totalsCard .grand {
   font-size: 18px;
+  font-weight: 700;
 }
+
+.invoicePreview {
+  background: #f8f9fd;
+  border: 1px solid #e1e7f2;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.invoiceRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #d8dfeb;
+}
+
+.invoiceRow:last-child {
+  border-bottom: none;
+}
+
+.actionsCol {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .error {
   color: #c51616;
+  margin: 8px 0;
 }
+
 .success {
   color: #1a7f2e;
-  margin-top: 8px;
+  margin: 6px 0;
+}
+
+.muted {
+  color: #667793;
+}
+
+@media (max-width: 1400px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .invoicePanel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+
+  .sideNav {
+    display: none;
+  }
+
+  .topbar {
+    flex-direction: column;
+  }
+
+  .topbarActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .authCard {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .authFields {
+    grid-template-columns: 1fr;
+  }
+
+  .contentGrid,
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
 }
