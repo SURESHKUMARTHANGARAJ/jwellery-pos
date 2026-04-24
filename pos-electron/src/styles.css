@@ -89,6 +89,35 @@ select {
   color: #53607a;
 }
 
+
+.topbarActions {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.authCard {
+  min-width: 320px;
+  background: #f7f9fd;
+  border: 1px solid #d8e1ef;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.authTitle {
+  margin: 0 0 8px;
+  color: #314662;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.authFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
 .rateControl {
   min-width: 280px;
 }
@@ -319,8 +348,103 @@ button.danger {
     flex-direction: column;
   }
 
+  .topbarActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .authCard {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .authFields {
+    grid-template-columns: 1fr;
+  }
+
   .contentGrid,
   .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.loginStrip {
+  margin-top: 14px;
+  padding: 12px 14px;
+}
+
+.loginRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.loginRow h3 {
+  margin: 0;
+}
+
+.loginRow p {
+  margin: 4px 0 0;
+  color: #637693;
+  font-size: 13px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill.ok {
+  background: #e6f7eb;
+  color: #1f7f40;
+}
+
+.pill.warn {
+  background: #fff3e2;
+  color: #945c00;
+}
+
+button.secondary {
+  background: #6b7890;
+}
+
+.globalError {
+  margin-top: 12px;
+}
+
+.productCrudPanel {
+  margin-top: 16px;
+}
+
+.crudLayout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 12px;
+}
+
+.productForm {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.productList {
+  max-height: 560px;
+}
+
+@media (max-width: 1200px) {
+  .loginRow {
+    grid-template-columns: 1fr;
+  }
+
+  .crudLayout {
     grid-template-columns: 1fr;
   }
 }
