@@ -89,35 +89,6 @@ select {
   color: #53607a;
 }
 
-
-.topbarActions {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.authCard {
-  min-width: 320px;
-  background: #f7f9fd;
-  border: 1px solid #d8e1ef;
-  border-radius: 12px;
-  padding: 10px;
-}
-
-.authTitle {
-  margin: 0 0 8px;
-  color: #314662;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.authFields {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
 .rateControl {
   min-width: 280px;
 }
@@ -346,20 +317,6 @@ button.danger {
 
   .topbar {
     flex-direction: column;
-  }
-
-  .topbarActions {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .authCard {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .authFields {
-    grid-template-columns: 1fr;
   }
 
   .contentGrid,

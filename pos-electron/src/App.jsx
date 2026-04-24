@@ -168,7 +168,7 @@ export default function App() {
     { label: "Total Sales", value: formatInr(totals.grand), hint: "Current cart value" },
     { label: "Items in Cart", value: cart.length, hint: "Ready for billing" },
     { label: "Search Results", value: results.length, hint: "Products found" },
-    { label: "Auth Status", value: accessToken ? "Logged In" : "Login Required", hint: authMessage }
+    { label: "Gold Rate (24K)", value: `${formatInr(goldRate)}/gm`, hint: "Live/manual rate" }
   ];
 
   return (
@@ -204,27 +204,6 @@ export default function App() {
             <p>Here&apos;s what&apos;s happening with your jewellery billing desk today.</p>
           </div>
           <div className="topbarActions">
-            <div className="authCard">
-              <p className="authTitle">POS Login</p>
-              <div className="authFields">
-                <input
-                  value={authUser}
-                  onChange={(e) => setAuthUser(e.target.value)}
-                  placeholder="Username"
-                />
-                <input
-                  type="password"
-                  value={authPassword}
-                  onChange={(e) => setAuthPassword(e.target.value)}
-                  placeholder="Password"
-                />
-                <button onClick={() => loginLocal()} disabled={authLoading}>
-                  {authLoading ? "Logging in..." : "Login"}
-                </button>
-              </div>
-              <small className={accessToken ? "success" : "muted"}>{authMessage}</small>
-            </div>
-
             <div className="rateControl">
               <label>Gold rate / gram</label>
               <div className="rowInline">
